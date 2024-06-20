@@ -1,0 +1,54 @@
+Option Explicit
+
+Public Sub ChartImageShower()
+    
+    btnCancel.Cancel = False
+    
+    Dim imageFile As String
+    
+    'Call different pictures for different options
+    
+    If ChartBuilder.lstOption.Value = "Stacked Area" Then
+        imageFile = ThisWorkbook.Path & "\AnnualStackedArea.GIF"
+        imgChart.Picture = LoadPicture(imageFile)
+    End If
+    
+    If ChartBuilder.lstOption.Value = "Stacked Bar" Then
+        imageFile = ThisWorkbook.Path & "\AnnualStackedBar.GIF"
+        imgChart.Picture = LoadPicture(imageFile)
+    End If
+    
+    If ChartBuilder.lstOption.Value = "Stacked Column" Then
+        If ChartBuilder.optAnnual.Value = True Then
+            imageFile = ThisWorkbook.Path & "\AnnualStackedColumn.GIF"
+            imgChart.Picture = LoadPicture(imageFile)
+        End If
+    End If
+    
+    If ChartBuilder.lstOption.Value = "Clustered Bar" Then
+        imageFile = ThisWorkbook.Path & "\StatisticalClusteredBar.GIF"
+        imgChart.Picture = LoadPicture(imageFile)
+    End If
+    
+    If ChartBuilder.lstOption.Value = "Clustered Column" Then
+        imageFile = ThisWorkbook.Path & "\StatisticalClusteredColumn.GIF"
+        imgChart.Picture = LoadPicture(imageFile)
+    End If
+    
+    If ChartBuilder.lstOption.Value = "Stacked Column" Then
+        If ChartBuilder.optStatistical.Value = True Then
+            imageFile = ThisWorkbook.Path & "\StatisticalStackedColumn.GIF"
+            imgChart.Picture = LoadPicture(imageFile)
+        End If
+    End If
+    
+    Me.Show
+    
+End Sub
+
+Private Sub btnCancel_Click()
+
+    Me.Hide
+    btnCancel.Cancel = True
+        
+End Sub

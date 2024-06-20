@@ -1,0 +1,60 @@
+Option Explicit
+
+Public Sub ChartBuilder_Options()
+    
+    Me.Show
+    
+End Sub
+
+Private Sub btnCreateChart_Click()
+    
+    'IsNull function to detect if no options are selected
+    'lstOption.Value = Null or "Null" returns false
+    If IsNull(lstOption.Value) Then
+        MsgBox "Please select a chart type.", vbOKOnly, "Unselected Chart Type"
+    Else
+        Call ChartImage.ChartImageShower
+    End If
+    
+    If ChartImage.btnCancel.Cancel = True Then
+        Me.Hide
+    End If
+    
+End Sub
+
+Private Sub UserForm_Initialize()
+
+    optAnnual.Value = True
+    optStatistical.Value = False
+    
+End Sub
+
+Private Sub optAnnual_Click()
+    
+   lstOption.Clear
+    
+    With lstOption
+        .AddItem "Stacked Area"
+        .AddItem "Stacked Column"
+        .AddItem "Stacked Bar"
+    End With
+    
+End Sub
+
+Private Sub optStatistical_Click()
+    
+    lstOption.Clear
+    
+    With lstOption
+        .AddItem "Clustered Column"
+        .AddItem "Stacked Column"
+        .AddItem "Clustered Bar"
+    End With
+    
+End Sub
+
+Private Sub btnCancel_Click()
+    
+    Unload Me
+    
+End Sub

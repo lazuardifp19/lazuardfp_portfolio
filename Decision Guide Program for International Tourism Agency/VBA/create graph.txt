@@ -1,0 +1,217 @@
+Option Explicit
+
+Sub CreateChartImages()
+
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    
+    'Just in case the sheets have not been deleted, deletes them to run this program
+    On Error Resume Next
+        ThisWorkbook.Sheets("Offline Annual Data").Delete
+        ThisWorkbook.Sheets("Offline Statistical Data").Delete
+        ThisWorkbook.Charts("Stacked Area").Delete
+        ThisWorkbook.Charts("Stacked Column (Annual)").Delete
+        ThisWorkbook.Charts("Stacked Bar").Delete
+        ThisWorkbook.Charts("Clustered Column").Delete
+        ThisWorkbook.Charts("Stacked Column (Statistical)").Delete
+        ThisWorkbook.Charts("Clustered Bar").Delete
+    
+    'Creating a destination sheet where the offline data can be copied to
+    ThisWorkbook.Sheets.Add.Name = "Offline Annual Data"
+    ThisWorkbook.Sheets.Add.Name = "Offline Statistical Data"
+    
+    'Open the processed offline data from the python program
+    Workbooks.Open (ThisWorkbook.Path & "\international_tourism_data.xlsx")
+    
+    'Copy the annual data given in the python processed data excel file
+    Workbooks("international_tourism_data").Worksheets("Data").Range("A1:F17").Copy
+    Workbooks("SIE International Tourism Decision Guide").Worksheets("Offline Annual Data").Range("A1:F17").PasteSpecial
+    
+    'Copy the statistical data given in the python processed data excel file
+    Workbooks("international_tourism_data").Worksheets("Statistics").Range("A1:F4").Copy
+    Workbooks("SIE International Tourism Decision Guide").Worksheets("Offline Statistical Data").Range("A1:F4").PasteSpecial
+    
+    Workbooks("international_tourism_data").Close
+    
+    'Sets up a reference data sheet for annual datas
+    Dim wsAnnualData As Worksheet
+    Set wsAnnualData = Worksheets("Offline Annual Data")
+    
+    'Create the charts for Annual Stacked Area chart
+    Dim scoresChartStackedArea As Chart
+    Set scoresChartStackedArea = ThisWorkbook.Charts.Add
+    
+    'Creating Annual Stacked Area Chart
+    With scoresChartStackedArea
+        .Name = "Stacked Area"
+        .HasTitle = True
+        .ChartTitle.Text = "International Tourist Arrivals Worldwide 2010 - 2020 by Region"
+        .HasLegend = True
+        .ChartType = xlAreaStacked
+        .PlotBy = xlColumns
+        scoresChartStackedArea.SetSourceData Source:=wsAnnualData.Range("B1:F17")
+        
+        .SeriesCollection(1).XValues = wsAnnualData.Range("A2:A17")
+        
+        'Renaming x-axis title
+        .Axes(xlCategory).HasTitle = True
+        .Axes(xlCategory).AxisTitle.Text = "Year"
+        
+        'Renaming y-axis title
+        .Axes(xlValue).HasTitle = True
+        .Axes(xlValue).AxisTitle.Text = "International Tourists (in millions)"
+        
+    End With
+    
+    Dim imageStackedAreaFile As String
+    
+    imageStackedAreaFile = ThisWorkbook.Path & "\AnnualStackedArea.GIF"
+    scoresChartStackedArea.Export Filename:=imageStackedAreaFile
+    
+    Dim scoresChartStackedColumnAnnual As Chart
+    Set scoresChartStackedColumnAnnual = ThisWorkbook.Charts.Add
+    
+    'Creating Annual Stacked Column Chart
+    With scoresChartStackedColumnAnnual
+        .Name = "Stacked Column (Annual)"
+        .HasTitle = True
+        .ChartTitle.Text = "International Tourist Arrivals Worldwide 2010 - 2020 by Region"
+        .HasLegend = True
+        .ChartType = xlColumnStacked
+        .PlotBy = xlColumns
+        scoresChartStackedColumnAnnual.SetSourceData Source:=wsAnnualData.Range("B1:F17")
+        
+        .SeriesCollection(1).XValues = wsAnnualData.Range("A2:A17")
+        
+        'Renaming x-axis title
+        .Axes(xlCategory).HasTitle = True
+        .Axes(xlCategory).AxisTitle.Text = "Year"
+        
+        'Renaming y-axis title
+        .Axes(xlValue).HasTitle = True
+        .Axes(xlValue).AxisTitle.Text = "International Tourists (in millions)"
+        
+    End With
+    
+    'Create the image file that is going to be used as path
+    Dim imageStackedColumnAnnualFile As String
+    
+    'Downloads the image files for the chart created
+    imageStackedColumnAnnualFile = ThisWorkbook.Path & "\AnnualStackedColumn.GIF"
+    scoresChartStackedColumnAnnual.Export Filename:=imageStackedColumnAnnualFile
+    
+    Dim scoresChartStackedBar As Chart
+    Set scoresChartStackedBar = ThisWorkbook.Charts.Add
+    
+    'Creating Stacked Bar Chart
+    With scoresChartStackedBar
+        .Name = "Stacked Bar"
+        .HasTitle = True
+        .ChartTitle.Text = "International Tourist Arrivals Worldwide 2010 - 2020 by Region"
+        .HasLegend = True
+        .ChartType = xlBarStacked
+        scoresChartStackedBar.SetSourceData Source:=wsAnnualData.Range("B1:F17")
+        
+        .SeriesCollection(1).XValues = wsAnnualData.Range("A2:A17")
+        
+        'Renaming x-axis title
+        .Axes(xlCategory).HasTitle = True
+        .Axes(xlCategory).AxisTitle.Text = "Year"
+        
+        'Renaming y-axis title
+        .Axes(xlValue).HasTitle = True
+        .Axes(xlValue).AxisTitle.Text = "International Tourists (in millions)"
+        
+    End With
+    
+    Dim imageStackedBarFile As String
+    
+    imageStackedBarFile = ThisWorkbook.Path & "\AnnualStackedBar.GIF"
+    scoresChartStackedBar.Export Filename:=imageStackedBarFile
+    
+    Dim wsStatisticalData As Worksheet
+    Set wsStatisticalData = Worksheets("Offline Statistical Data")
+    
+    Dim scoresChartClusteredColumn As Chart
+    Set scoresChartClusteredColumn = ThisWorkbook.Charts.Add
+    
+    'Creating Stacked Bar Chart
+    With scoresChartClusteredColumn
+        .Name = "Clustered Column"
+        .HasTitle = True
+        .ChartTitle.Text = "International Tourist Arrivals Worldwide 2010 - 2020 by Region"
+        .HasLegend = True
+        .ChartType = xlColumnClustered
+        .PlotBy = xlRows
+        scoresChartClusteredColumn.SetSourceData Source:=wsStatisticalData.Range("A2:F4")
+        
+        .SeriesCollection(2).XValues = wsStatisticalData.Range("B1:F1")
+        
+    End With
+    
+    Dim imageClusteredColumnFile As String
+    
+    imageClusteredColumnFile = ThisWorkbook.Path & "\StatisticalClusteredColumn.GIF"
+    scoresChartClusteredColumn.Export Filename:=imageClusteredColumnFile
+    
+    Dim scoresChartStatisticalStackedColumn As Chart
+    Set scoresChartStatisticalStackedColumn = ThisWorkbook.Charts.Add
+    
+    'Creating Stacked Bar Chart
+    With scoresChartStatisticalStackedColumn
+        .Name = "Stacked Column (Statistical)"
+        .HasTitle = True
+        .ChartTitle.Text = "International Tourist Arrivals Worldwide 2010 - 2020 by Region"
+        .HasLegend = True
+        .ChartType = xlColumnStacked
+        .PlotBy = xlRows
+        scoresChartStatisticalStackedColumn.SetSourceData Source:=wsStatisticalData.Range("A2:F4")
+        
+        .SeriesCollection(2).XValues = wsStatisticalData.Range("B1:F1")
+        
+    End With
+    
+    Dim imageStatisticalStackedColumnFile As String
+    
+    imageStatisticalStackedColumnFile = ThisWorkbook.Path & "\StatisticalStackedColumn.GIF"
+    scoresChartStatisticalStackedColumn.Export Filename:=imageStatisticalStackedColumnFile
+    
+    Dim scoresChartClusteredBar As Chart
+    Set scoresChartClusteredBar = ThisWorkbook.Charts.Add
+    
+    'Creating Stacked Bar Chart
+    With scoresChartClusteredBar
+        .Name = "Clustered Bar"
+        .HasTitle = True
+        .ChartTitle.Text = "International Tourist Arrivals Worldwide 2010 - 2020 by Region"
+        .HasLegend = True
+        .ChartType = xlBarClustered
+        .PlotBy = xlRows
+        scoresChartClusteredBar.SetSourceData Source:=wsStatisticalData.Range("A2:F4")
+        
+        .SeriesCollection(2).XValues = wsStatisticalData.Range("B1:F1")
+    
+    End With
+    
+    Dim imageClusteredBarFile As String
+    
+    imageClusteredBarFile = ThisWorkbook.Path & "\StatisticalClusteredBar.GIF"
+    scoresChartClusteredBar.Export Filename:=imageClusteredBarFile
+    
+    'Delete the charts that are made and have been saved as an image file
+    ThisWorkbook.Charts("Stacked Area").Delete
+    ThisWorkbook.Charts("Stacked Column (Annual)").Delete
+    ThisWorkbook.Charts("Stacked Bar").Delete
+    
+    ThisWorkbook.Charts("Clustered Column").Delete
+    ThisWorkbook.Charts("Stacked Column (Statistical)").Delete
+    ThisWorkbook.Charts("Clustered Bar").Delete
+    
+    'Delete the sheets for data references
+    ThisWorkbook.Sheets("Offline Annual Data").Delete
+    ThisWorkbook.Sheets("Offline Statistical Data").Delete
+    
+    Application.ScreenUpdating = True
+    Application.DisplayAlerts = True
+    
+End Sub

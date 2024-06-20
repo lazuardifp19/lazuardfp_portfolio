@@ -1,0 +1,56 @@
+Option Explicit
+
+Sub SIEDecisionGuide_Main()
+    
+    Dim offline As Boolean
+    
+    'Commands to check if the offline python processed data is in the same folder as this excel
+    Dim offlineDataFile As String
+    Dim offlineDataFileExists As String
+    
+    offlineDataFile = ThisWorkbook.Path & "\international_tourism_data.xlsx"
+    offlineDataFileExists = Dir(offlineDataFile, vbDirectory)
+    
+    If offlineDataFileExists = "" Then
+        MsgBox "Please run the data processing python file and put the international_tourism_data.xlsx file in the same folder as this excel.", vbOKOnly, "Missing File Error"
+        GoTo breakModule
+    Else
+        
+        'Prerequisite boolean checker for a chart creator function
+        offline = True
+        
+    End If
+    
+    'Commands to check if the MSAccess region file is in the same folder as this excel
+    Dim regionDataFile As String
+    Dim regionDataFileExists As String
+    
+    regionDataFile = ThisWorkbook.Path & "\Regions.accdb"
+    regionDataFileExists = Dir(regionDataFile, vbDirectory)
+    
+    If regionDataFileExists = "" Then
+        MsgBox "Please put the Regions.accdb file in the same folder as this excel.", vbOKOnly, "Missing File Error"
+        GoTo breakModule
+    End If
+    
+    'Commands to check if the supplementary information file is in the same folder as this excel
+    Dim informationFile As String
+    Dim informationFileExists As String
+    
+    informationFile = ThisWorkbook.Path & "\InternationalTouristArrivalsWorldwideByRegion.xlsx"
+    informationFileExists = Dir(informationFile, vbDirectory)
+    
+    If informationFileExists = "" Then
+        MsgBox "Please put the file InternationalTouristArrivalsWorldwideByRegion.xlsx in the same folder as this excel.", vbOKOnly, "Missing File Error"
+        GoTo breakModule
+    End If
+    
+    'Only create graph images once all prerequisite files are in the same folder as this excel
+    If offline = True Then
+        Call CreateChartImages
+    End If
+    
+    Call MainMenu.UFMainMenu_Open
+
+breakModule:
+End Sub

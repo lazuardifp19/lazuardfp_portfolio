@@ -1,0 +1,31 @@
+Option Explicit
+
+Public Sub UFMainMenu_Open()
+    
+    Me.Show
+    
+End Sub
+
+Private Sub btnChart_Click()
+
+    Call ChartBuilder.ChartBuilder_Options
+    
+End Sub
+
+Private Sub btnQuery_Click()
+    
+    Call QueryBuilder.CallQuery
+    
+End Sub
+
+Private Sub btnSource_Click()
+
+    Call SourceData.ShowSourceData
+    
+End Sub
+
+Private Sub btnCancel_Click()
+    
+    Unload Me
+    
+End Sub
