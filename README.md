@@ -22,7 +22,9 @@ I am eager to pursue new opportunities to leverage my skills and make a meaningf
     [Notebook](https://github.com/lazuardifp19/lazuardfp_portfolio/blob/main/Statistical%20Root%20Cause%20Analysis%20in%20Safety%20Operations%20at%20a%20Container%20Terminal/root-cause-analysis-accident-container-terminal.ipynb)
 
 - **Environment Control Systems**
+    
     [.INO](https://github.com/lazuardifp19/lazuardfp_portfolio/blob/main/Environment%20Control%20System/ECS_Code/ECS_Code.ino) | [Schematics (PDF)](https://github.com/lazuardifp19/lazuardfp_portfolio/blob/main/Environment%20Control%20System/ECS_Schematics.pdf)
 
 - **Motion Detector Alarm Systems**
+    
     [.INO](https://github.com/lazuardifp19/lazuardfp_portfolio/blob/main/Motion%20Detector%20Alarm/MDA_Code/MDA_Code.ino) | [Schematics (PDF)](https://github.com/lazuardifp19/lazuardfp_portfolio/blob/main/Motion%20Detector%20Alarm/MDA_Schematics.pdf)
