@@ -15,7 +15,7 @@ I am eager to pursue new opportunities to leverage my skills and make a meaningf
     
     This project analyze Divvy's bike-sharing data to understand customer behavior, with the goal of converting casual riders into annual members. Using data from January to April 2024, the analysis includes data cleaning, trend identification, and visualization. Key insights reveal peak usage times, preferred bike types, and ride duration. Recommendations include targeting promotions during peak hours, weekend membership offers, and seasonal campaigns to encourage casual riders to become annual members, ultimately aiming to increase long-term customer loyalty and business growth.
 
-    [Notebook](https://github.com/lazuardifp19/lazuardfp_portfolio/blob/main/Analysis%20of%20Customer%20Behavior%20at%20Divvy%20Bikes/divvy-biketrip-analysis-2024.ipynb)
+    [Notebook](https://github.com/lazuardifp19/lazuardfp_portfolio/blob/main/Analysis%20of%20Customer%20Behavior%20at%20Divvy%20Bikes/divvy-biketrip-analysis-2024.ipynb) | [Dashboard(Tableau)](https://public.tableau.com/app/profile/lazuardi.fauzan.primaputra/viz/CustomerBehaviorReportQ1DivvyBikes/MainDashboard?publish=yes)
 
     - **Statistical Root Cause Analysis of Safety Operations at a Container Terminal**
     
