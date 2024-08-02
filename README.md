@@ -31,7 +31,7 @@ I am eager to pursue new opportunities to leverage my skills and make a meaningf
 
         An e-commerce data analysis to optimize business performance by identifying different product segments based on the product sales behavioral characteristics using K-means clustering and create targeted strategies for specific product segments. 3 clusters were identified and each clusters have three actionable insights that is aimed to optimize business performance.
 
-        [Notebook](https://github.com/lazuardifp19/lazuardfp_portfolio/blob/main/Ecommerce%20Analysis%20With%20Product-Centric%20RFM%20Analysis%20and%20K%20Means%20Clustering/ecommerce-analysis-with-product-centric-rfm-analysis-and-k-means-clustering.ipynb) | [Report] (https://github.com/lazuardifp19/lazuardfp_portfolio/blob/main/Ecommerce%20Analysis%20With%20Product-Centric%20RFM%20Analysis%20and%20K%20Means%20Clustering/Ecommerce%20Product-Centric%20RFM%20Clustering%20.pdf)
+        [Notebook](https://github.com/lazuardifp19/lazuardfp_portfolio/blob/main/Ecommerce%20Analysis%20With%20Product-Centric%20RFM%20Analysis%20and%20K%20Means%20Clustering/ecommerce-analysis-with-product-centric-rfm-analysis-and-k-means-clustering.ipynb) | [Report](https://github.com/lazuardifp19/lazuardfp_portfolio/blob/main/Ecommerce%20Analysis%20With%20Product-Centric%20RFM%20Analysis%20and%20K%20Means%20Clustering/Ecommerce%20Product-Centric%20RFM%20Clustering%20.pdf)
 
 - ### **Embedded Computer Systems**
     - **Environment Control Systems**
